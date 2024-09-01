@@ -15,7 +15,7 @@ const valueInput = ref(null)
 const showSelectSymbol = ref(false)
 const selectedSymbol = ref(currentCurrencySymbolGetters.value?.value || null)
 
-const keyboardHeight = ref(0)
+const keyboardHeight = ref(32)
 
 const optionsSymbols = computed(() => {
   console.log('currencySymbols', currencySymbols)
@@ -107,7 +107,9 @@ onMounted(() => {
     >
       <span>{{ 'Выбрать знак' }}</span>
     </n-button>
-    <div class="flex justify-center absolute bottom-8 left-0 w-full">
+    <div class="flex justify-center absolute bottom-8 left-0 w-full" :style="`
+      bottom: ${keyboardHeight}px
+    `">
       <n-button
         :color="'#0064B0'"
         :text-color="'#FFFFFF'"
