@@ -3,7 +3,7 @@ import { type RouteRecordRaw } from 'vue-router'
 export default (): Array<RouteRecordRaw> => {
   return [
     {
-      path: '/',
+      path: '/checkmoney/',
       name: 'main',
       component: () => import('@/views/Main.vue'),
       redirect: { name: 'home' },

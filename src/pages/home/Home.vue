@@ -22,7 +22,7 @@ const validatorInputNumber = (x: number) => x >= 0
         :validator="validatorInputNumber"
         :input-props="{
           inputmode: 'decimal',
-          pattern: '[0-9]*[.]?[0-9]*'
+          pattern: '[0-9]*\.?[0-9]*'
         }"
         placeholder=""
         class="number-input-main"
