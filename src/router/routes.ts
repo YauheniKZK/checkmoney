@@ -13,7 +13,7 @@ export default (): Array<RouteRecordRaw> => {
       },
       children: [
         {
-          path: '/home',
+          path: '/checkmoney/home',
           name: 'home',
           component: () => import('@/pages/home/Home.vue'),
           meta: {
