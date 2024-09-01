@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { currencySymbols } from '@/untils/data'
 import { useAppStore } from '@/stores/app'
 import { storeToRefs } from 'pinia'
@@ -14,6 +14,8 @@ const inputnumber = ref()
 const valueInput = ref(null)
 const showSelectSymbol = ref(false)
 const selectedSymbol = ref(currentCurrencySymbolGetters.value?.value || null)
+
+const keyboardHeight = ref(0)
 
 const optionsSymbols = computed(() => {
   console.log('currencySymbols', currencySymbols)
@@ -54,12 +56,27 @@ document.addEventListener('touchstart', function(event: any) {
   }
 })
 
+
+onMounted(() => {
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+      console.log('window', window)
+      const viewportHeight = window.visualViewport.height;
+      const windowHeight = window.innerHeight;
+      keyboardHeight.value = windowHeight - viewportHeight;
+
+      console.log('Высота клавиатуры:', keyboardHeight.value);
+    })
+  }
+})
+
 </script>
 
 <template>
   <div class="flex grow flex-col w-full p-4 relative">
     <span class="absolute right-4 top-4">{{ WebApp.viewportHeight }}</span>
     <span class="absolute right-4 top-8">{{ WebApp.viewportStableHeight }}</span>
+    <span class="absolute right-4 top-16">{{ keyboardHeight }}</span>
     <div class="flex justify-center mb-8 leading-[66px]">
       <span class="text-5xl pacifico-font">{{ 'Расходы' }}</span>
     </div>
