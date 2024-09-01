@@ -186,7 +186,7 @@ onMounted(() => {
         </div>
       </n-drawer-content>
     </n-drawer>
-    <n-drawer v-model:show="showAddCategory" :width="380" to="#app" :placement="'bottom'" :content-class="'bg-[#1E5F74]'">
+    <n-drawer v-model:show="showAddCategory" :width="380" to="#app" :placement="'top'" :content-class="'bg-[#1E5F74]'">
       <n-drawer-content>
         <div class="flex flex-col">
           <span class="text-[#eeeeee] mb-2">{{ 'Добавить новую категорию' }}</span>
