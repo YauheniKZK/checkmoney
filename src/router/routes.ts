@@ -3,7 +3,7 @@ import { type RouteRecordRaw } from 'vue-router'
 export default (): Array<RouteRecordRaw> => {
   return [
     {
-      path: '/checkmoney/',
+      path: '/',
       name: 'main',
       component: () => import('@/views/Main.vue'),
       redirect: { name: 'home' },
@@ -13,7 +13,7 @@ export default (): Array<RouteRecordRaw> => {
       },
       children: [
         {
-          path: '/checkmoney/home',
+          path: '/home',
           name: 'home',
           component: () => import('@/pages/home/Home.vue'),
           meta: {
