@@ -10,7 +10,7 @@ const { currentCurrencySymbolGetters } = storeToRefs(appStore)
 const { setCurrentCurrencySymbol } = appStore
 
 const inputnumber = ref()
-const value = ref(null)
+const valueInput = ref(null)
 const showSelectSymbol = ref(false)
 const selectedSymbol = ref(currentCurrencySymbolGetters.value?.value || null)
 
@@ -63,7 +63,7 @@ document.addEventListener('touchstart', function(event: any) {
     <div class="flex w-full justify-center bg-[#3C2C3E] rounded-lg max-w-[300px] mx-auto p-2 mb-2">
       <n-input-number
         ref="inputnumber"
-        :value="value"
+        v-model:value="valueInput"
         :show-button="false"
         :parse="parseCurrency"
         :validator="validatorInputNumber"
