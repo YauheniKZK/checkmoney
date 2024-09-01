@@ -20,6 +20,9 @@ const validatorInputNumber = (x: number) => x >= 0
         :value="value"
         :show-button="false"
         :validator="validatorInputNumber"
+        :input-props="{
+          inputmode: 'numeric'
+        }"
         placeholder=""
         class="number-input-main"
       />
