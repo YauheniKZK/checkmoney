@@ -1,1 +1,0 @@
-import{_ as e,c as o,o as c,t}from"./index-CdHhY9tG.js";const s={},r={class:"flex grow flex-col w-full"};function n(a,l){return c(),o("div",r,t("home"))}const f=e(s,[["render",n]]);export{f as default};

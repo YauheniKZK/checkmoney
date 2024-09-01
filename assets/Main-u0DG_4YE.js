@@ -1,0 +1,1 @@
+import{_ as o,r as c,o as n,c as r,a as t}from"./index-C0aiZvyZ.js";const s={},a={class:"flex grow flex-col w-full main-container"};function _(l,i){const e=c("router-view");return n(),r("div",a,[t(e,{class:"h-[100vh]"})])}const m=o(s,[["render",_]]);export{m as default};
