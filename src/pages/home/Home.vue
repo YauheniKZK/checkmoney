@@ -63,7 +63,12 @@ onMounted(() => {
       console.log('window', window)
       const viewportHeight = window.visualViewport.height;
       const windowHeight = window.innerHeight;
-      keyboardHeight.value = windowHeight - viewportHeight;
+      if (windowHeight - viewportHeight <= 0) {
+        keyboardHeight.value = 32  
+      } else {
+        keyboardHeight.value = windowHeight - viewportHeight + 32;  
+      }
+      // keyboardHeight.value = windowHeight - viewportHeight;
 
       console.log('Высота клавиатуры:', keyboardHeight.value);
     })
@@ -107,7 +112,7 @@ onMounted(() => {
     >
       <span>{{ 'Выбрать знак' }}</span>
     </n-button>
-    <div class="flex justify-center absolute bottom-8 left-0 w-full" :style="`
+    <div class="flex justify-center absolute bottom-8 left-0 w-full animated-btn" :style="`
       bottom: ${keyboardHeight}px
     `">
       <n-button
@@ -144,4 +149,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.animated-btn {
+  transition: all 0.3s ease-in-out;
+}
 </style>
