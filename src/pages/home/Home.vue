@@ -28,12 +28,12 @@ const optionsSymbols = computed(() => {
 
 const validatorInputNumber = (x: number) => x >= 0
 
-const parseCurrency = (input: string) => {
-  const nums = input.replace(/(,|\$|\s)/g, '').trim()
-  if (/^\d+(\.(\d+)?)?$/.test(nums))
-    return Number(nums)
-  return nums === '' ? null : Number.NaN
-}
+// const parseCurrency = (input: string) => {
+//   const nums = input.replace(/(,|\$|\s)/g, '').trim()
+//   if (/^\d+(\.(\d+)?)?$/.test(nums))
+//     return Number(nums)
+//   return nums === '' ? null : Number.NaN
+// }
 
 const changeSymbol = () => {
   showSelectSymbol.value = true
@@ -61,11 +61,11 @@ document.addEventListener('touchstart', function(event: any) {
       <span class="text-5xl pacifico-font">{{ 'Расходы' }}</span>
     </div>
     <div class="flex w-full justify-center bg-[#3C2C3E] rounded-lg max-w-[300px] mx-auto p-2 mb-2">
+      <!-- :parse="parseCurrency" -->
       <n-input-number
         ref="inputnumber"
         v-model:value="valueInput"
         :show-button="false"
-        :parse="parseCurrency"
         :validator="validatorInputNumber"
         :input-props="{
           inputmode: 'decimal',
@@ -86,6 +86,23 @@ document.addEventListener('touchstart', function(event: any) {
     >
       <span>{{ 'Выбрать знак' }}</span>
     </n-button>
+    <div class="flex justify-center fixed bottom-8 left-0 w-full">
+      <n-button
+        :color="'#0064B0'"
+        :text-color="'#FFFFFF'"
+        class="h-[54px] max-w-[340px] w-full mx-auto"
+        :style="`
+          opacity: 1 !important;
+          border-radius: 16px;
+          font-size: 16px;
+          font-weight: 500;
+          background: #0064B0 !important;
+        `"
+        @click="false"
+      >
+        <span>{{ 'Внести' }}</span>
+      </n-button>
+    </div>
     <n-drawer v-model:show="showSelectSymbol" :width="380" to="#app" :placement="'right'" :content-class="'bg-[#1E5F74]'">
       <n-drawer-content>
         <div class="flex flex-col">
