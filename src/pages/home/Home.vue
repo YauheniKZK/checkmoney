@@ -153,7 +153,7 @@ onMounted(() => {
         />
       </div>
     </div>
-    <div class="flex justify-center absolute bottom-8 left-0 w-full animated-btn" :style="`
+    <div v-if="!showAddCategory" class="flex justify-center absolute bottom-8 left-0 w-full animated-btn" :style="`
       bottom: ${keyboardHeight}px
     `">
       <n-button
