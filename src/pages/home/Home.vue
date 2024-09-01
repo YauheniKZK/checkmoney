@@ -4,16 +4,19 @@ import { currencySymbols } from '@/untils/data'
 import { useAppStore } from '@/stores/app'
 import { storeToRefs } from 'pinia'
 import WebApp from '@twa-dev/sdk'
+import CategoryItem from './components/CategoryItem.vue'
 
 const appStore = useAppStore()
 
-const { currentCurrencySymbolGetters } = storeToRefs(appStore)
-const { setCurrentCurrencySymbol } = appStore
+const { currentCurrencySymbolGetters, userCategoriesGetters } = storeToRefs(appStore)
+const { setCurrentCurrencySymbol, actionAddUserCategory } = appStore
 
 const inputnumber = ref()
 const valueInput = ref(null)
 const showSelectSymbol = ref(false)
+const showAddCategory = ref(false)
 const selectedSymbol = ref(currentCurrencySymbolGetters.value?.value || null)
+const valueTitleCategory = ref('')
 
 const keyboardHeight = ref(32)
 
@@ -45,6 +48,16 @@ const changeSymbol = () => {
 const updateSymbol = (value: any, option: any) => {
   selectedSymbol.value = value
   setCurrentCurrencySymbol(option)
+}
+
+const addCategory = () => {
+  actionAddUserCategory({
+    title: valueTitleCategory.value,
+    value: 200
+  })
+
+  showAddCategory.value = false
+  valueTitleCategory.value = ''
 }
 
 document.addEventListener('touchstart', function(event: any) {
@@ -112,6 +125,34 @@ onMounted(() => {
     >
       <span>{{ 'Выбрать знак' }}</span>
     </n-button>
+    <div class="flex flex-col w-full py-4">
+      <div class="flex items-center justify-between border-b-[1px] border-[#ffffff62] pb-4 mb-4">
+        <span>{{ 'Ваши категории' }}</span>
+        <n-button
+          :color="'#0064B0'"
+          :text-color="'#FFFFFF'"
+          class="h-[20px]"
+          :style="`
+            opacity: 1 !important;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 400;
+            background: #0064B0 !important;
+          `"
+          @click="showAddCategory = true"
+        >
+          <span>{{ 'добавить' }}</span>
+        </n-button>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <CategoryItem
+          v-for="(item, index) in userCategoriesGetters"
+          :key="index"
+          :item="item"
+          class="w-[calc(50%-8px)]"
+        />
+      </div>
+    </div>
     <div class="flex justify-center absolute bottom-8 left-0 w-full animated-btn" :style="`
       bottom: ${keyboardHeight}px
     `">
@@ -142,6 +183,34 @@ onMounted(() => {
             :options="optionsSymbols"
             @update:value="updateSymbol"
           />
+        </div>
+      </n-drawer-content>
+    </n-drawer>
+    <n-drawer v-model:show="showAddCategory" :width="380" to="#app" :placement="'bottom'" :content-class="'bg-[#1E5F74]'">
+      <n-drawer-content>
+        <div class="flex flex-col">
+          <span class="text-[#eeeeee] mb-2">{{ 'Добавить новую категорию' }}</span>
+          <n-input
+            v-model:value="valueTitleCategory"
+            type="text"
+            placeholder=""
+            class="mb-4"
+          />
+          <n-button
+            :color="'#0064B0'"
+            :text-color="'#FFFFFF'"
+            class="h-[54px]"
+            :style="`
+              opacity: 1 !important;
+              border-radius: 16px;
+              font-size: 16px;
+              font-weight: 400;
+              background: #0064B0 !important;
+            `"
+            @click="addCategory"
+          >
+            <span>{{ 'Добавить' }}</span>
+          </n-button>
         </div>
       </n-drawer-content>
     </n-drawer>
