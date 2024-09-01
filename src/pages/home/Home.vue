@@ -1,10 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { currencySymbols } from '@/untils/data'
+import { useAppStore } from '@/stores/app'
+import { storeToRefs } from 'pinia'
 
-console.log('currencyToSymbolMap', currencySymbols)
+const appStore = useAppStore()
 
-const value = ref(0)
+const { currentCurrencySymbolGetters } = storeToRefs(appStore)
+const { setCurrentCurrencySymbol } = appStore
+
+const value = ref(null)
+const showSelectSymbol = ref(false)
+const selectedSymbol = ref(currentCurrencySymbolGetters.value?.value || null)
+
+const optionsSymbols = computed(() => {
+  console.log('currencySymbols', currencySymbols)
+  return currencySymbols.map((item) => {
+    return {
+      label: item.name,
+      value: item.code,
+      ...item
+    }
+  })
+})
+
 
 const validatorInputNumber = (x: number) => x >= 0
 
@@ -15,14 +34,23 @@ const parseCurrency = (input: string) => {
   return nums === '' ? null : Number.NaN
 }
 
+const changeSymbol = () => {
+  showSelectSymbol.value = true
+}
+
+const updateSymbol = (value: any, option: any) => {
+  selectedSymbol.value = value
+  setCurrentCurrencySymbol(option)
+}
+
 </script>
 
 <template>
   <div class="flex grow flex-col w-full p-4">
-    <div class="flex justify-center mb-6">
+    <div class="flex justify-center mb-8 leading-[66px]">
       <span class="text-5xl pacifico-font">{{ 'Расходы' }}</span>
     </div>
-    <div class="flex w-full justify-center">
+    <div class="flex w-full justify-center bg-[#3C2C3E] rounded-lg max-w-[300px] mx-auto p-2 mb-2">
       <n-input-number
         :value="value"
         :show-button="false"
@@ -32,10 +60,35 @@ const parseCurrency = (input: string) => {
           inputmode: 'decimal',
           pattern: '[0-9]*\.?[0-9]*'
         }"
-        placeholder=""
+        placeholder="0"
         class="number-input-main"
-      />
+      >
+        <template #suffix>
+          <span class=" absolute right-0 top-0">{{ currentCurrencySymbolGetters?.symbol_native || '' }}</span>  
+        </template>
+      </n-input-number>
     </div>
+    <n-button
+      text
+      color="#eeeeee"
+      @click="changeSymbol"
+    >
+      <span>{{ 'Выбрать знак' }}</span>
+    </n-button>
+    <n-drawer v-model:show="showSelectSymbol" :width="380" to="#app" :placement="'right'" :content-class="'bg-[#1E5F74]'">
+      <n-drawer-content>
+        <div class="flex flex-col">
+          <span class="text-[#eeeeee] mb-2">{{ 'Выберете денежный знак' }}</span>
+          <n-select
+            v-model:value="selectedSymbol"
+            filterable
+            placeholder="Please select symbol"
+            :options="optionsSymbols"
+            @update:value="updateSymbol"
+          />
+        </div>
+      </n-drawer-content>
+    </n-drawer>
   </div>
 </template>
 

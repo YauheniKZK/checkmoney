@@ -80,6 +80,6 @@ html {
     --n-icon-color-hover: rgba(146, 146, 146, 1);
     --n-icon-color-pressed: rgba(175, 175, 175, 1);
     --n-icon-color-disabled: rgba(209, 209, 209, 1);
-    --n-suffix-text-color: rgb(51, 54, 57);
+    --n-suffix-text-color: #EEEEEE !important;
     text-align: center;
 }
