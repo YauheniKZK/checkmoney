@@ -44,9 +44,10 @@ const updateSymbol = (value: any, option: any) => {
   setCurrentCurrencySymbol(option)
 }
 
-document.addEventListener('touchstart', function(event) {
+document.addEventListener('touchstart', function(event: any) {
+  console.log('inputnumber.value', inputnumber.value)
   if (inputnumber.value) {
-    if (inputnumber.value !== document.activeElement && !inputnumber.value.contains(event.target)) {
+    if (inputnumber.value !== document.activeElement && !event?.target?.closest('input')) {
       inputnumber.value.blur();
     }
   }
