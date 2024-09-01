@@ -40,8 +40,8 @@ html {
     --n-font-size: 32px !important;
     --n-border-radius: 0px !important;
     --n-height: 52px !important;
-    --n-padding-left: 0px !important;
-    --n-padding-right: 0px !important;
+    --n-padding-left: 50px !important;
+    --n-padding-right: 50px !important;
     --n-text-color: #EEEEEE !important;
     --n-caret-color: #EEEEEE !important;
     --n-text-decoration-color: rgb(51, 54, 57);

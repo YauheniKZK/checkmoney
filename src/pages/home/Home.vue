@@ -9,6 +9,7 @@ const appStore = useAppStore()
 const { currentCurrencySymbolGetters } = storeToRefs(appStore)
 const { setCurrentCurrencySymbol } = appStore
 
+const inputnumber = ref()
 const value = ref(null)
 const showSelectSymbol = ref(false)
 const selectedSymbol = ref(currentCurrencySymbolGetters.value?.value || null)
@@ -43,6 +44,14 @@ const updateSymbol = (value: any, option: any) => {
   setCurrentCurrencySymbol(option)
 }
 
+document.addEventListener('touchstart', function(event) {
+  if (inputnumber.value) {
+    if (inputnumber.value !== document.activeElement && !inputnumber.value.contains(event.target)) {
+      inputnumber.value.blur();
+    }
+  }
+})
+
 </script>
 
 <template>
@@ -52,6 +61,7 @@ const updateSymbol = (value: any, option: any) => {
     </div>
     <div class="flex w-full justify-center bg-[#3C2C3E] rounded-lg max-w-[300px] mx-auto p-2 mb-2">
       <n-input-number
+        ref="inputnumber"
         :value="value"
         :show-button="false"
         :parse="parseCurrency"
@@ -64,7 +74,7 @@ const updateSymbol = (value: any, option: any) => {
         class="number-input-main"
       >
         <template #suffix>
-          <span class=" absolute right-0 top-0">{{ currentCurrencySymbolGetters?.symbol_native || '' }}</span>  
+          <span class="absolute right-0 top-0">{{ currentCurrencySymbolGetters?.symbol_native || '' }}</span>  
         </template>
       </n-input-number>
     </div>
