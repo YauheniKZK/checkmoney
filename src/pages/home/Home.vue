@@ -8,6 +8,13 @@ const value = ref(0)
 
 const validatorInputNumber = (x: number) => x >= 0
 
+const parseCurrency = (input: string) => {
+  const nums = input.replace(/(,|\$|\s)/g, '').trim()
+  if (/^\d+(\.(\d+)?)?$/.test(nums))
+    return Number(nums)
+  return nums === '' ? null : Number.NaN
+}
+
 </script>
 
 <template>
@@ -19,6 +26,7 @@ const validatorInputNumber = (x: number) => x >= 0
       <n-input-number
         :value="value"
         :show-button="false"
+        :parse="parseCurrency"
         :validator="validatorInputNumber"
         :input-props="{
           inputmode: 'decimal',
