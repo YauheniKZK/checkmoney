@@ -66,7 +66,7 @@ onMounted(() => {
       if (windowHeight - viewportHeight <= 0) {
         keyboardHeight.value = 32  
       } else {
-        keyboardHeight.value = windowHeight - viewportHeight + 32;  
+        keyboardHeight.value = windowHeight - viewportHeight + 16;  
       }
       // keyboardHeight.value = windowHeight - viewportHeight;
 
@@ -150,6 +150,6 @@ onMounted(() => {
 
 <style scoped>
 .animated-btn {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 </style>
