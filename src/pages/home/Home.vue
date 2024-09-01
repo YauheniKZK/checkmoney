@@ -9,7 +9,7 @@ import CategoryItem from './components/CategoryItem.vue'
 const appStore = useAppStore()
 
 const { currentCurrencySymbolGetters, userCategoriesGetters } = storeToRefs(appStore)
-const { setCurrentCurrencySymbol, actionAddUserCategory } = appStore
+const { setCurrentCurrencySymbol, actionAddUserCategory, actionValuePriceCategory } = appStore
 
 const inputnumber = ref()
 const valueInput = ref(null)
@@ -17,6 +17,7 @@ const showSelectSymbol = ref(false)
 const showAddCategory = ref(false)
 const selectedSymbol = ref(currentCurrencySymbolGetters.value?.value || null)
 const valueTitleCategory = ref('')
+const selectedId = ref<any>(null)
 
 const keyboardHeight = ref(32)
 
@@ -50,14 +51,31 @@ const updateSymbol = (value: any, option: any) => {
   setCurrentCurrencySymbol(option)
 }
 
+const selectCategory = (id: number) => {
+  selectedId.value = id
+}
+
 const addCategory = () => {
+  console.log('userCategoriesGetters.value.length', userCategoriesGetters.value)
   actionAddUserCategory({
     title: valueTitleCategory.value,
-    value: 200
+    value: 0,
+    id: userCategoriesGetters.value.length + 1
   })
 
   showAddCategory.value = false
   valueTitleCategory.value = ''
+}
+
+const addPrice = () => {
+  if (valueInput.value && selectedId.value) {
+    actionValuePriceCategory({
+      categoryId: selectedId.value,
+      value: valueInput.value
+    })
+    selectedId.value = null
+    valueInput.value = null
+  }
 }
 
 document.addEventListener('touchstart', function(event: any) {
@@ -150,6 +168,8 @@ onMounted(() => {
           :key="index"
           :item="item"
           class="w-[calc(50%-8px)]"
+          :class="selectedId === item.id ? 'bg-[#006769]' : 'bg-[#405D72]'"
+          @click="selectCategory(item.id)"
         />
       </div>
     </div>
@@ -160,6 +180,7 @@ onMounted(() => {
         :color="'#0064B0'"
         :text-color="'#FFFFFF'"
         class="h-[54px] max-w-[340px] w-full mx-auto"
+        :disabled="!selectedId"
         :style="`
           opacity: 1 !important;
           border-radius: 16px;
@@ -167,7 +188,7 @@ onMounted(() => {
           font-weight: 500;
           background: #0064B0 !important;
         `"
-        @click="false"
+        @click="addPrice"
       >
         <span>{{ 'Внести' }}</span>
       </n-button>

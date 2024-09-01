@@ -20,7 +20,6 @@ const props = defineProps({
 <style scoped>
 .item-category {
   padding: 16px;
-  background: #405D72;
   border-radius: 8px;
   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }

@@ -23,10 +23,19 @@ export const useAppStore = defineStore('app', () => {
     userCategories.value.push(item)
   }
 
+  function actionValuePriceCategory(payload: {
+    categoryId: number,
+    value: number
+  }) {
+    const cat = userCategories.value.filter((item: any) => item.id === payload.categoryId)
+    cat[0].value = payload.value
+  }
+
   return {
     currentCurrencySymbolGetters,
     setCurrentCurrencySymbol,
     userCategoriesGetters,
-    actionAddUserCategory
+    actionAddUserCategory,
+    actionValuePriceCategory
   }
 })
