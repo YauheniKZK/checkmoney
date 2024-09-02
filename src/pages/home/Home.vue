@@ -18,6 +18,8 @@ const showAddCategory = ref(false)
 const selectedSymbol = ref(currentCurrencySymbolGetters.value?.value || null)
 const valueTitleCategory = ref('')
 const selectedId = ref<any>(null)
+const inputNumberPlaceholder = ref('0')
+const addPriceBtn = ref()
 
 const keyboardHeight = ref(32)
 
@@ -32,6 +34,13 @@ const optionsSymbols = computed(() => {
   })
 })
 
+const focusNumber = () => {
+  inputNumberPlaceholder.value = ''
+}
+
+const blurNumber = () => {
+  inputNumberPlaceholder.value = '0'
+}
 
 const validatorInputNumber = (x: number) => x >= 0
 
@@ -81,7 +90,7 @@ const addPrice = () => {
 document.addEventListener('touchstart', function(event: any) {
   console.log('inputnumber.value', inputnumber.value)
   if (inputnumber.value) {
-    if (inputnumber.value !== document.activeElement && !event?.target?.closest('input')) {
+    if (inputnumber.value !== document.activeElement && !event?.target?.closest('input') && addPriceBtn.value !== document.activeElement) {
       inputnumber.value.blur();
     }
   }
@@ -128,8 +137,10 @@ onMounted(() => {
           inputmode: 'decimal',
           pattern: '[0-9]*\.?[0-9]*'
         }"
-        placeholder="0"
+        :placeholder="inputNumberPlaceholder"
         class="number-input-main"
+        @focus="focusNumber"
+        @blur="blurNumber"
       >
         <template #suffix>
           <span class="absolute right-0 top-0">{{ currentCurrencySymbolGetters?.symbol_native || '' }}</span>  
@@ -177,6 +188,7 @@ onMounted(() => {
       bottom: ${keyboardHeight}px
     `">
       <n-button
+        ref="addPriceBtn"
         :color="'#0064B0'"
         :text-color="'#FFFFFF'"
         class="h-[54px] max-w-[340px] w-full mx-auto"

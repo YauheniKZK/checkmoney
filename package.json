@@ -1,9 +1,9 @@
 {
   "name": "check-money",
   "private": true,
-  "version": "0.0.12",
+  "version": "0.0.13",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5377",
     "build": "vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist --branch gh-pages",
