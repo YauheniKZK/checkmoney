@@ -88,9 +88,9 @@ const addPrice = () => {
 }
 
 document.addEventListener('touchstart', function(event: any) {
-  console.log('inputnumber.value', inputnumber.value)
+  // console.log('inputnumber.value', inputnumber.value)
   if (inputnumber.value) {
-    if (inputnumber.value !== document.activeElement && !event?.target?.closest('input') && addPriceBtn.value !== document.activeElement) {
+    if (inputnumber.value !== document.activeElement && !event?.target?.closest('input') && !event.target.closest('button')) {
       inputnumber.value.blur();
     }
   }
