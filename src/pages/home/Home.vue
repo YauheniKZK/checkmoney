@@ -84,6 +84,7 @@ const addPrice = () => {
     })
     selectedId.value = null
     valueInput.value = null
+    inputnumber.value.focus();
   }
 }
 
@@ -205,7 +206,7 @@ onMounted(() => {
         <span>{{ 'Внести' }}</span>
       </n-button>
     </div>
-    <n-drawer v-model:show="showSelectSymbol" :width="380" to="#app" :placement="'right'" :content-class="'bg-[#1E5F74]'">
+    <n-drawer v-model:show="showSelectSymbol" :width="380" to=".main-container" :placement="'right'" :content-class="'bg-[#1E5F74]'">
       <n-drawer-content>
         <div class="flex flex-col">
           <span class="text-[#eeeeee] mb-2">{{ 'Выберете денежный знак' }}</span>
@@ -219,7 +220,7 @@ onMounted(() => {
         </div>
       </n-drawer-content>
     </n-drawer>
-    <n-drawer v-model:show="showAddCategory" :width="380" to="#app" :placement="'top'" :content-class="'bg-[#1E5F74]'">
+    <n-drawer v-model:show="showAddCategory" :width="380" to=".main-container" :placement="'top'" :content-class="'bg-[#1E5F74]'">
       <n-drawer-content>
         <div class="flex flex-col">
           <span class="text-[#eeeeee] mb-2">{{ 'Добавить новую категорию' }}</span>
