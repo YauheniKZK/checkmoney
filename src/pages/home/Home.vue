@@ -21,6 +21,7 @@ const selectedId = ref<any>(null)
 const inputNumberPlaceholder = ref('0')
 const addPriceBtn = ref()
 const categoryItemRef = ref()
+const categoryItemRefTest = ref<any>(null)
 
 const keyboardHeight = ref(32)
 
@@ -99,7 +100,10 @@ document.addEventListener('touchstart', function(event: any) {
       !event.target.closest('.item-category')
     ) {
       console.log('categoryItemRef', event.target.closest('.item-category'))
+      categoryItemRefTest.value = String(event.target.closest('.item-category'))
       inputnumber.value.blur();
+    } else{ 
+      categoryItemRefTest.value = 'Yes'
     }
   }
 })
@@ -130,6 +134,7 @@ onMounted(() => {
     <span class="absolute right-4 top-4">{{ WebApp.viewportHeight }}</span>
     <span class="absolute right-4 top-8">{{ WebApp.viewportStableHeight }}</span>
     <span class="absolute right-4 top-16">{{ keyboardHeight }}</span>
+    <span class="absolute right-4 top-32">{{ categoryItemRefTest }}</span>
     <div class="flex justify-center mb-8 leading-[66px]">
       <span class="text-5xl pacifico-font">{{ 'Расходы' }}</span>
     </div>
