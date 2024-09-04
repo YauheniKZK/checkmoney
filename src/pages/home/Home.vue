@@ -20,6 +20,7 @@ const valueTitleCategory = ref('')
 const selectedId = ref<any>(null)
 const inputNumberPlaceholder = ref('0')
 const addPriceBtn = ref()
+const categoryItemRef = ref()
 
 const keyboardHeight = ref(32)
 
@@ -91,7 +92,13 @@ const addPrice = () => {
 document.addEventListener('touchstart', function(event: any) {
   // console.log('inputnumber.value', inputnumber.value)
   if (inputnumber.value) {
-    if (inputnumber.value !== document.activeElement && !event?.target?.closest('input') && !event.target.closest('button')) {
+    console.log('categoryItemRef', event.target.closest('.item-category'))
+    if (
+      inputnumber.value !== document.activeElement &&
+      !event?.target?.closest('input') &&
+      !event.target.closest('button') &&
+      !event.target.closest('.item-category')
+    ) {
       inputnumber.value.blur();
     }
   }
@@ -176,6 +183,7 @@ onMounted(() => {
       </div>
       <div class="flex flex-wrap gap-4">
         <CategoryItem
+          ref="categoryItemRef"
           v-for="(item, index) in userCategoriesGetters"
           :key="index"
           :item="item"
