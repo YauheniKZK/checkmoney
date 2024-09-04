@@ -102,7 +102,12 @@ document.addEventListener('touchstart', function(event: any) {
       console.log('categoryItemRef', event.target.closest('.item-category'))
       categoryItemRefTest.value = String(event.target.closest('.item-category'))
       inputnumber.value.blur();
-    } else{ 
+    } else {
+      if (event.target.closest('.item-category')) {
+        inputnumber.value.focus();
+      } else {
+        inputnumber.value.blur();
+      }
       categoryItemRefTest.value = 'Yes'
     }
   }
