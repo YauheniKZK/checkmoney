@@ -112,7 +112,7 @@ document.addEventListener('touchstart', function(event: any) {
       }
     } else {
       if (event.target.closest('.item-category')) {
-        // hiddennumber.value.focus();
+        hiddennumber.value.focus();
         // inputnumber.value.focus();
       } else {
         // inputnumber.value.blur();
@@ -184,7 +184,7 @@ onMounted(() => {
           pattern: '[0-9]*\.?[0-9]*'
         }"
         :placeholder="''"
-        class="number-input-main fixed -top-[99999px]"
+        class="number-input-main absolute -top-[99999px]"
       />
     </div>
     <n-button
