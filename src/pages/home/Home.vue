@@ -105,12 +105,14 @@ document.addEventListener('touchstart', function(event: any) {
       
       if (event.target.closest('.item-category')) {
         hiddennumber.value.focus();
+        inputnumber.value.focus();
       } else {
         inputnumber.value.blur();
       }
     } else {
       if (event.target.closest('.item-category')) {
         hiddennumber.value.focus();
+        inputnumber.value.focus();
       } else {
         // inputnumber.value.blur();
       }
