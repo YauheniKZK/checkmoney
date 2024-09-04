@@ -22,6 +22,7 @@ const inputNumberPlaceholder = ref('0')
 const addPriceBtn = ref()
 const categoryItemRef = ref()
 const categoryItemRefTest = ref<any>(null)
+const hiddennumber = ref()
 
 const keyboardHeight = ref(32)
 
@@ -101,12 +102,17 @@ document.addEventListener('touchstart', function(event: any) {
     ) {
       console.log('categoryItemRef', event.target.closest('.item-category'))
       categoryItemRefTest.value = String(event.target.closest('.item-category'))
+      if (event.target.closest('.item-category')) {
+        hiddennumber.value.focus();
+      } else {
+        // inputnumber.value.blur();
+      }
       inputnumber.value.blur();
     } else {
       if (event.target.closest('.item-category')) {
-        inputnumber.value.focus();
+        hiddennumber.value.focus();
       } else {
-        inputnumber.value.blur();
+        // inputnumber.value.blur();
       }
       categoryItemRefTest.value = 'Yes'
     }
@@ -164,6 +170,19 @@ onMounted(() => {
           <span class="absolute right-0 top-0">{{ currentCurrencySymbolGetters?.symbol_native || '' }}</span>  
         </template>
       </n-input-number>
+      <n-input-number
+        ref="hiddennumber"
+        v-model:value="valueInput"
+        :show-button="false"
+        :parse="parseCurrency"
+        :validator="validatorInputNumber"
+        :input-props="{
+          inputmode: 'decimal',
+          pattern: '[0-9]*\.?[0-9]*'
+        }"
+        :placeholder="''"
+        class="number-input-main fixed -top-[99999px]"
+      />
     </div>
     <n-button
       text
