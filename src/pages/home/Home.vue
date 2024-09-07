@@ -22,7 +22,8 @@ const updateTabs = (value: string) => {
       type="segment"
       :value="currentTab"
       animated
-      class="tab-custom-main"
+      class="tab-custom-main flex flex-col grow"
+      :pane-class="'flex flex-col grow'"
       @update:value="updateTabs"
     >
       <n-tab-pane name="expenses" :tab="'Расходы'">

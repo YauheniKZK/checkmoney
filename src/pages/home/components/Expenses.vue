@@ -146,15 +146,12 @@ onMounted(() => {
 
 <template>
   <div class="flex grow flex-col w-full p-4 relative">
-    <span class="absolute right-4 top-4">{{ WebApp.viewportHeight }}</span>
-    <span class="absolute right-4 top-8">{{ WebApp.viewportStableHeight }}</span>
-    <span class="absolute right-4 top-16">{{ keyboardHeight }}</span>
-    <span class="absolute right-4 top-32">{{ categoryItemRefTest }}</span>
-    <div class="flex justify-center mb-8 leading-[66px]">
-      <span class="text-5xl pacifico-font">{{ 'Расходы' }}</span>
-    </div>
-    <div class="flex w-full justify-center bg-[#3C2C3E] rounded-lg max-w-[300px] mx-auto p-2 mb-2">
-      <!--  -->
+    <div class="flex items-center">
+      <div class="flex text-[32px] text-[#d2d2d2] mr-1">
+        <n-ellipsis style="max-width: 100px">
+          {{ currentCurrencySymbolGetters?.symbol_native || '' }}
+        </n-ellipsis>
+      </div>
       <n-input-number
         ref="inputnumber"
         v-model:value="valueInput"
@@ -169,24 +166,22 @@ onMounted(() => {
         class="number-input-main"
         @focus="focusNumber"
         @blur="blurNumber"
-      >
-        <template #suffix>
-          <span class="absolute right-0 top-0">{{ currentCurrencySymbolGetters?.symbol_native || '' }}</span>  
-        </template>
-      </n-input-number>
-      <n-input-number
-        ref="hiddennumber"
-        v-model:value="valueInput"
-        :show-button="false"
-        :parse="parseCurrency"
-        :validator="validatorInputNumber"
-        :input-props="{
-          inputmode: 'decimal',
-          pattern: '[0-9]*\.?[0-9]*'
-        }"
-        :placeholder="''"
-        class="number-input-main absolute -top-[99999px]"
       />
+    </div>
+    <div class="flex pt-2 max-w-[70%]">
+      <span class="text-[#d2d2d2]">
+        {{ 'Выберете сначало категорию, потом внесите ваши расходы' }}
+      </span>
+    </div>
+    <span class="absolute right-4 top-4">{{ WebApp.viewportHeight }}</span>
+    <span class="absolute right-4 top-8">{{ WebApp.viewportStableHeight }}</span>
+    <span class="absolute right-4 top-16">{{ keyboardHeight }}</span>
+    <span class="absolute right-4 top-32">{{ categoryItemRefTest }}</span>
+    <div class="flex justify-center mb-8 leading-[66px]">
+      <span class="text-5xl pacifico-font">{{ 'Расходы' }}</span>
+    </div>
+    <div class="flex w-full justify-center bg-[#3C2C3E] rounded-lg max-w-[300px] mx-auto p-2 mb-2">
+      <!--  -->
     </div>
     <n-button
       text
