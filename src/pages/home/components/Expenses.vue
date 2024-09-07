@@ -142,7 +142,7 @@ onMounted(() => {
         :show-button="false"
         :parse="parseCurrency"
         :validator="validatorInputNumber"
-        :disabled="disabledInput"
+        :disabled="!selectedIdGetters"
         :input-props="{
           inputmode: 'decimal',
           pattern: '[0-9]*\.?[0-9]*'

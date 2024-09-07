@@ -4,6 +4,8 @@ import { useAppStore } from '@/stores/app'
 import { storeToRefs } from 'pinia'
 import { iconsFree } from '@/untils/data'
 import { getImageUrl } from '@/untils/images'
+import CategoryItem from './CategoryItem.vue'
+import CheckIcon from '@/assets/icons/components/CheckIcon.vue'
 
 const appStore = useAppStore()
 
@@ -12,6 +14,7 @@ const { actionAddUserCategory, setSelectedId } = appStore
 
 const showAddCategory = ref(false)
 const valueTitleCategory = ref('')
+const selectedIcon = ref<any>(null)
 
 const selectCategory = (id: number) => {
   setSelectedId(id)
@@ -22,11 +25,16 @@ const addCategory = () => {
   actionAddUserCategory({
     title: valueTitleCategory.value,
     value: 0,
-    id: userCategoriesGetters.value.length + 1
+    id: userCategoriesGetters.value.length + 1,
+    icon: selectedIcon.value
   })
 
   showAddCategory.value = false
   valueTitleCategory.value = ''
+}
+
+const selectIcon = (icon: any) => {
+  selectedIcon.value = icon
 }
 
 </script>
@@ -77,12 +85,20 @@ const addCategory = () => {
           :key="index"
           :item="item"
           class="w-[calc(50%-8px)]"
-          :class="selectedIdGetters === item.id ? 'bg-[#006769]' : 'bg-[#405D72]'"
+          :class="selectedIdGetters === item.id ? 'bg-[#6d6c6c]' : 'bg-[#373737]'"
           @click="selectCategory(item.id)"
         />
       </template>
     </div>
-    <n-drawer v-model:show="showAddCategory" :width="380" :height="'70%'" to=".main-container" :placement="'top'" :content-class="'bg-[#2c2c2c]'">
+    <n-drawer
+      v-model:show="showAddCategory"
+      :resizable="true"
+      :width="380"
+      :height="'70%'"
+      to=".main-container"
+      :placement="'top'"
+      :content-class="'bg-[#2c2c2c]'"
+    >
       <n-drawer-content>
         <div class="flex flex-col">
           <span class="text-[#eeeeee] mb-2">{{ 'Введите название категории *' }}</span>
@@ -98,12 +114,24 @@ const addCategory = () => {
               <div
                 v-for="icon in iconsFree"
                 :key="icon.key"
-                class="flex justify-center items-center w-[calc(25%-8px)] bg-[#373737] p-2 rounded-[16px]"
+                class="flex justify-center items-center w-[calc(25%-8px)] p-2 rounded-[16px] relative"
+                :class="{
+                  'bg-[#373737]': icon.key !== selectedIcon?.key,
+                  'bg-[#6d6c6c]': icon.key === selectedIcon?.key
+                }"
                 style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;"
+                @click="selectIcon(icon)"
               >
+                <n-icon
+                  v-if="icon.key === selectedIcon?.key"
+                  :size="24"
+                  class="absolute left-[16px] -top-[4px]"
+                >
+                  <CheckIcon :color="'#d6ff63'" />
+                </n-icon>
                 <img
                   :src="getImageUrl(`icons-categories/${icon.title}.svg`)"
-                  class="object-contain max-w-full"
+                  class="object-contain max-w-full w-full"
                   alt=""
                 />
               </div>

@@ -8,25 +8,26 @@ const props = defineProps({
 <template>
   <div class="flex item-category gap-2">
     <div class="flex flex-col grow">
-      <span class="text-[16px] font-semibold mb-2">{{ props?.item?.title || '' }}</span>
+      <span class="text-[16px] font-semibold mb-2 text-[#eeeeee]">{{ props?.item?.title || '' }}</span>
       <span class="tag">{{ (props?.item?.value || 0) + '$' }}</span>
     </div>
     <div class="flex">
-      <img :src="getImageUrl('images/icon1.png')" class="max-w-[60px] object-contain" alt="" />
+      <img :src="getImageUrl(`icons-categories/${props?.item?.icon?.title}.svg`)" class="max-w-[60px] w-full object-contain" alt="" />
     </div>
   </div>
 </template>
 
 <style scoped>
 .item-category {
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  padding: 8px;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 .tag {
   padding: 2px 8px;
   border-radius: 8px;
   background: #344C64;
+  color: #eeeeee;
   align-self: baseline;
 }
 </style>
