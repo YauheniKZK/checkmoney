@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @tailwind base;
 @tailwind components;
@@ -10,11 +10,11 @@ html {
   height: 100%;
   padding: 0;
   margin: 0;
-  background: #222831;
+  background: #303030;
 }
 
 #app {
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto Mono", monospace;
   font-weight: 400;
   font-optical-sizing: auto;
   font-style: normal;
@@ -25,9 +25,8 @@ html {
   max-width: 600%;
   width: 100%;
   margin: 0 auto;
-  background: #0F2027;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+  background: #242424;
+      
   position: relative;
 }
 
@@ -136,4 +135,15 @@ html {
     --n-icon-color-disabled: rgba(209, 209, 209, 1);
     --n-suffix-text-color: #EEEEEE !important;
     text-align: center;
+}
+
+.tab-custom-main {
+  --n-color-segment: #2c2c2c !important;
+  --n-tab-border-radius: 8px !important;
+  --n-tab-text-color: #d2d2d2 !important;
+  --n-tab-text-color-active: #1a1a1a !important;
+}
+
+.tab-custom-main .n-tabs-nav {
+  padding: 0 16px;
 }
