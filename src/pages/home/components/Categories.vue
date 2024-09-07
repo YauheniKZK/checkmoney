@@ -2,18 +2,19 @@
 import { ref } from 'vue'
 import { useAppStore } from '@/stores/app'
 import { storeToRefs } from 'pinia'
+import { iconsFree } from '@/untils/data'
+import { getImageUrl } from '@/untils/images'
 
 const appStore = useAppStore()
 
-const { userCategoriesGetters } = storeToRefs(appStore)
-const { setCurrentCurrencySymbol, actionAddUserCategory, actionValuePriceCategory } = appStore
+const { userCategoriesGetters, selectedIdGetters } = storeToRefs(appStore)
+const { actionAddUserCategory, setSelectedId } = appStore
 
 const showAddCategory = ref(false)
-const selectedId = ref<any>(null)
-  const valueTitleCategory = ref('')
+const valueTitleCategory = ref('')
 
 const selectCategory = (id: number) => {
-  selectedId.value = id
+  setSelectedId(id)
 }
 
 const addCategory = () => {
@@ -35,6 +36,7 @@ const addCategory = () => {
     <div class="flex items-center justify-between border-b-[1px] border-[#ffffff62] pb-2 mb-4">
       <span class="text-[#868686]">{{ 'Ваши категории' }}</span>
       <n-button
+        v-if="userCategoriesGetters.length > 0"
         :color="'#939393'"
         :text-color="'#1a1a1a'"
         class="h-[20px]"
@@ -51,36 +53,72 @@ const addCategory = () => {
       </n-button>
     </div>
     <div class="flex flex-wrap gap-4">
-      <CategoryItem
-        ref="categoryItemRef"
-        v-for="(item, index) in userCategoriesGetters"
-        :key="index"
-        :item="item"
-        class="w-[calc(50%-8px)]"
-        :class="selectedId === item.id ? 'bg-[#006769]' : 'bg-[#405D72]'"
-        @click="selectCategory(item.id)"
-      />
+      <div v-if="userCategoriesGetters.length === 0" class="flex flex-col justify-center items-center min-h-[140px] w-full">
+        <n-button
+          :color="'#cecece'"
+          :text-color="'#1a1a1a'"
+          class="h-[52px]"
+          :style="`
+            opacity: 1 !important;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 500;
+            background: #cecece !important;
+          `"
+          @click="showAddCategory = true"
+        >
+          <span>{{ 'Новая категория' }}</span>
+        </n-button>
+      </div>
+      <template v-else>
+        <CategoryItem
+          ref="categoryItemRef"
+          v-for="(item, index) in userCategoriesGetters"
+          :key="index"
+          :item="item"
+          class="w-[calc(50%-8px)]"
+          :class="selectedIdGetters === item.id ? 'bg-[#006769]' : 'bg-[#405D72]'"
+          @click="selectCategory(item.id)"
+        />
+      </template>
     </div>
-    <n-drawer v-model:show="showAddCategory" :width="380" to=".main-container" :placement="'top'" :content-class="'bg-[#1E5F74]'">
+    <n-drawer v-model:show="showAddCategory" :width="380" :height="'70%'" to=".main-container" :placement="'top'" :content-class="'bg-[#2c2c2c]'">
       <n-drawer-content>
         <div class="flex flex-col">
-          <span class="text-[#eeeeee] mb-2">{{ 'Добавить новую категорию' }}</span>
+          <span class="text-[#eeeeee] mb-2">{{ 'Введите название категории *' }}</span>
           <n-input
             v-model:value="valueTitleCategory"
             type="text"
             placeholder=""
             class="mb-4"
           />
+          <div class="flex flex-col w-full mb-6">
+            <span class="text-[#eeeeee] mb-2">{{ 'Выберете иконку *' }}</span>
+            <div class="flex flex-wrap gap-2">
+              <div
+                v-for="icon in iconsFree"
+                :key="icon.key"
+                class="flex justify-center items-center w-[calc(25%-8px)] bg-[#373737] p-2 rounded-[16px]"
+                style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;"
+              >
+                <img
+                  :src="getImageUrl(`icons-categories/${icon.title}.svg`)"
+                  class="object-contain max-w-full"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
           <n-button
-            :color="'#0064B0'"
-            :text-color="'#FFFFFF'"
-            class="h-[54px]"
+            :color="'#cecece'"
+            :text-color="'#1a1a1a'"
+            class="h-[52px]"
             :style="`
               opacity: 1 !important;
               border-radius: 16px;
               font-size: 16px;
               font-weight: 400;
-              background: #0064B0 !important;
+              background: #cecece !important;
             `"
             @click="addCategory"
           >

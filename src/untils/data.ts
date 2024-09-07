@@ -1071,3 +1071,30 @@ export const currencySymbols = [
 		"name_plural": "Zimbabwean Dollar"
 	}
 ]
+
+export const iconsFree = [
+	{
+		key: 0,
+		title: 'cake_slice_dessert_food_icon_263291'
+	},
+	{
+		key: 1,
+		title: 'drink_smoothie_juice_icon_263281'
+	},
+	{
+		key: 2,
+		title: 'jam_jar_icon_263298'
+	},
+	{
+		key: 3,
+		title: 'restaurant_fork_and_knife_icon_263289'
+	},
+	{
+		key: 4,
+		title: 'utensil_butcher_knife_cut_icon_263294'
+	},
+	{
+		key: 5,
+		title: 'utensil_cook_cooking_cooking_pot_boil_icon_263292'
+	}
+]

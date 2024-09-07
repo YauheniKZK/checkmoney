@@ -8,7 +8,7 @@ import Categories from './Categories.vue'
 
 const appStore = useAppStore()
 
-const { currentCurrencySymbolGetters } = storeToRefs(appStore)
+const { currentCurrencySymbolGetters, selectedIdGetters } = storeToRefs(appStore)
 const { setCurrentCurrencySymbol, actionValuePriceCategory } = appStore
 
 
@@ -23,6 +23,7 @@ const addPriceBtn = ref()
 const categoryItemRef = ref()
 const categoryItemRefTest = ref<any>(null)
 const hiddennumber = ref()
+const disabledInput = ref(true)
 
 const keyboardHeight = ref(32)
 
@@ -141,6 +142,7 @@ onMounted(() => {
         :show-button="false"
         :parse="parseCurrency"
         :validator="validatorInputNumber"
+        :disabled="disabledInput"
         :input-props="{
           inputmode: 'decimal',
           pattern: '[0-9]*\.?[0-9]*'
@@ -168,9 +170,13 @@ onMounted(() => {
       <span>{{ 'Выбрать знак' }}</span>
     </n-button> -->
     <Categories />
-    <div v-if="!showAddCategory" class="flex justify-center absolute bottom-8 left-0 w-full animated-btn" :style="`
-      bottom: ${keyboardHeight}px
-    `">
+    <div
+      v-if="selectedIdGetters"
+      class="flex justify-center absolute bottom-8 left-0 w-full animated-btn"
+      :style="`
+        bottom: ${keyboardHeight}px
+      `"
+    >
       <n-button
         ref="addPriceBtn"
         :color="'#0064B0'"
