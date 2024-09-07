@@ -37,12 +37,17 @@ const selectIcon = (icon: any) => {
   selectedIcon.value = icon
 }
 
+const closeDrawer = () => {
+  valueTitleCategory.value = ''
+  selectedIcon.value = null
+}
+
 </script>
 
 <template>
   <div class="flex flex-col w-full py-4">
     <div class="flex items-center justify-between border-b-[1px] border-[#ffffff62] pb-2 mb-4">
-      <span class="text-[#868686]">{{ 'Ваши категории' }}</span>
+      <span class="text-[#868686]">{{ 'Ваши категории ' + `(${userCategoriesGetters.length})` }}</span>
       <n-button
         v-if="userCategoriesGetters.length > 0"
         :color="'#939393'"
@@ -98,6 +103,7 @@ const selectIcon = (icon: any) => {
       to=".main-container"
       :placement="'top'"
       :content-class="'bg-[#2c2c2c]'"
+      @after-leave="closeDrawer"
     >
       <n-drawer-content>
         <div class="flex flex-col">
@@ -138,6 +144,7 @@ const selectIcon = (icon: any) => {
             </div>
           </div>
           <n-button
+            v-if="selectedIcon && valueTitleCategory !== ''"
             :color="'#cecece'"
             :text-color="'#1a1a1a'"
             class="h-[52px]"
