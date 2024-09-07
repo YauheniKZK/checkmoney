@@ -154,9 +154,15 @@ onMounted(() => {
       />
     </div>
     <div class="flex pt-2 max-w-[70%]">
-      <span class="text-[#d2d2d2]">
+      <span v-if="currentCurrencySymbolGetters" class="text-[#d2d2d2]">
         {{ 'Выберете сначало категорию, потом внесите ваши расходы' }}
       </span>
+      <div v-else>
+        <n-button text :text-color="'#d2d2d2'" @click="changeSymbol">
+          <span class="underline">{{ 'Выберете' }}</span>
+        </n-button>
+        <span class="text-[#d2d2d2]">{{ ' денежный знак' }}</span>
+      </div>
     </div>
     <span class="absolute right-4 top-4">{{ WebApp.viewportHeight }}</span>
     <span class="absolute right-4 top-8">{{ WebApp.viewportStableHeight }}</span>
@@ -195,14 +201,21 @@ onMounted(() => {
         <span>{{ 'Внести' }}</span>
       </n-button>
     </div>
-    <n-drawer v-model:show="showSelectSymbol" :width="380" to=".main-container" :placement="'right'" :content-class="'bg-[#1E5F74]'">
+    <n-drawer
+      v-model:show="showSelectSymbol"
+      :width="380"
+      to=".main-container"
+      :placement="'right'"
+      :content-class="'bg-[#2c2c2c]'"
+    >
       <n-drawer-content>
         <div class="flex flex-col">
           <span class="text-[#eeeeee] mb-2">{{ 'Выберете денежный знак' }}</span>
           <n-select
             v-model:value="selectedSymbol"
             filterable
-            placeholder="Please select symbol"
+            class="custom-select"
+            :placeholder="'денежный знак'"
             :options="optionsSymbols"
             @update:value="updateSymbol"
           />
