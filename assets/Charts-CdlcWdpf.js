@@ -1,0 +1,1 @@
+import{_ as s,o as t,c as e,a as o,t as c}from"./index-9zLaafVJ.js";const a={},n={class:"flex flex-col w-full pt-4"},r=o("span",null,c("Cahrts"),-1),_=[r];function l(f,i){return t(),e("div",n,_)}const p=s(a,[["render",l]]);export{p as default};
