@@ -1,22 +1,30 @@
 <script setup lang="ts">
 import { SmartHome, Settings, ChartPie } from '@vicons/tabler'
-import { BookInformation20Regular, ChartMultiple24Regular } from '@vicons/fluent'
+import WebApp from '@twa-dev/sdk'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const navigation = (type: 'charts' | 'home' | 'settings') => {
+  WebApp.HapticFeedback.impactOccurred('medium')
+  router.push({ name: type })
+}
 </script>
 
 <template>
   <div class="flex flex-col item-footer gap-2">
     <div class="flex justify-between items-center grow">
-      <n-button text @click="$router.push({ name: 'charts' })">
+      <n-button text @click="navigation('charts')">
         <n-icon :size="24" :color="'#eeeeee'">
           <ChartPie />
         </n-icon>
       </n-button>
-      <n-button text @click="$router.push({ name: 'home' })">
+      <n-button text @click="navigation('home')">
         <n-icon :size="30" :color="'#eeeeee'">
           <SmartHome />
         </n-icon>
       </n-button>
-      <n-button text @click="$router.push({ name: 'settings' })">
+      <n-button text @click="navigation('settings')">
         <n-icon :size="24" :color="'#eeeeee'">
           <Settings />
         </n-icon>

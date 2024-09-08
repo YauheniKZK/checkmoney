@@ -15,15 +15,13 @@ const { setCurrentCurrencySymbol, actionValuePriceCategory } = appStore
 const inputnumber = ref()
 const valueInput = ref(null)
 const showSelectSymbol = ref(false)
-const showAddCategory = ref(false)
+
 const selectedSymbol = ref(currentCurrencySymbolGetters.value?.value || null)
 const selectedId = ref<any>(null)
 const inputNumberPlaceholder = ref('0')
 const addPriceBtn = ref()
-const categoryItemRef = ref()
+
 const categoryItemRefTest = ref<any>(null)
-const hiddennumber = ref()
-const disabledInput = ref(true)
 
 const keyboardHeight = ref(102)
 
@@ -90,14 +88,12 @@ document.addEventListener('touchstart', function(event: any) {
       
       if (event.target.closest('.item-category')) {
         inputnumber.value.blur();
-        hiddennumber.value.focus();
         //inputnumber.value.focus();
       } else {
         inputnumber.value.blur();
       }
     } else {
       if (event.target.closest('.item-category')) {
-        hiddennumber.value.focus();
         // inputnumber.value.focus();
       } else {
         // inputnumber.value.blur();
@@ -106,11 +102,6 @@ document.addEventListener('touchstart', function(event: any) {
     }
   }
 })
-
-const heightCategoriesBlock = computed(() => {
-  return WebApp.viewportStableHeight
-})
-
 
 onMounted(() => {
   if (window.visualViewport) {
