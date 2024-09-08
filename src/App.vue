@@ -7,7 +7,7 @@ import Index from '@/views/Index.vue'
     <n-loading-bar-provider>
       <n-message-provider>
         <n-notification-provider>
-          <Index class="h-[100vh]" />
+          <Index class="grow" />
         </n-notification-provider>
       </n-message-provider>
     </n-loading-bar-provider>

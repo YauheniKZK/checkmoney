@@ -2,8 +2,8 @@
 </script>
 
 <template>
-<div class="flex flex-col grow max-w-[600px] w-full h-full mx-auto">
-    <router-view v-slot="{ Component }" class="h-[100vh]">
+<div class="flex flex-col grow max-w-[600px] w-full h-screen mx-auto">
+    <router-view v-slot="{ Component }" class="grow">
       <transition name="slide-left">
         <component :is="Component" />
       </transition>

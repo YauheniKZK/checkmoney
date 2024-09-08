@@ -5,7 +5,7 @@ const versionApp = import.meta.env.PACKAGE_VERSION
 
 <template>
   <div class="flex grow flex-col w-full main-container">
-    <router-view class="h-[100vh]" />
+    <router-view class="grow" />
     <FooterPage />
     <span class="fixed bottom-[80px] right-4">{{ versionApp }}</span>
   </div>

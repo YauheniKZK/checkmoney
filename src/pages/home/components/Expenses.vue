@@ -23,7 +23,7 @@ const addPriceBtn = ref()
 
 const categoryItemRefTest = ref<any>(null)
 
-const keyboardHeight = ref(102)
+const keyboardHeight = ref(0)
 
 const optionsSymbols = computed(() => {
   console.log('currencySymbols', currencySymbols)
@@ -110,7 +110,7 @@ onMounted(() => {
       const viewportHeight = window.visualViewport.height;
       const windowHeight = window.innerHeight;
       if (windowHeight - viewportHeight <= 0) {
-        keyboardHeight.value = 102  
+        keyboardHeight.value = 0  
       } else {
         keyboardHeight.value = windowHeight - viewportHeight + 16;  
       }
@@ -175,7 +175,7 @@ onMounted(() => {
     
     <div
       v-if="selectedIdGetters"
-      class="flex justify-center absolute bottom-[102px] left-0 w-full animated-btn z-10"
+      class="flex justify-center absolute bottom-[0px] left-0 w-full animated-btn z-10"
       :style="`
         bottom: ${keyboardHeight}px
       `"

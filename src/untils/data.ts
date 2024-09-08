@@ -1098,3 +1098,49 @@ export const iconsFree = [
 		title: 'utensil_cook_cooking_cooking_pot_boil_icon_263292'
 	}
 ]
+
+
+export const fakeHistory = [
+	{
+		key: 0,
+		day: '2024-09-08',
+		items: [
+			{
+				key: 0,
+				time: '2024-09-08T10:10:00',
+				category: 'Еда',
+				value: 5
+			},
+			{
+				key: 1,
+				time: '2024-09-08T10:40:00',
+				category: 'Машина',
+				value: 25
+			},
+			{
+				key: 2,
+				time: '2024-09-08T12:40:00',
+				category: 'Одежда',
+				value: 86
+			}
+		]
+	},
+	{
+		key: 1,
+		day: '2024-09-09',
+		items: [
+			{
+				key: 0,
+				time: '2024-09-08T13:10:00',
+				category: 'Спорт',
+				value: 10
+			},
+			{
+				key: 1,
+				time: '2024-09-08T15:40:00',
+				category: 'Связь',
+				value: 25
+			}
+		]
+	}
+]
