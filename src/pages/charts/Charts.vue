@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import Periods from './components/Periods.vue'
 </script>
 
 <template>
-  <div class="flex flex-col w-full pt-4">
-    <span>{{ 'Cahrts' }}</span>
+  <div class="flex flex-col w-full p-4">
+    <span class="max-w-[85%] mb-4">{{ 'Выберете период, или настройте дату по своему усмотрению' }}</span>
+    <Periods />
   </div>
 </template>
 
