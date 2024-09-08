@@ -89,7 +89,7 @@ const closeDrawer = () => {
           v-for="(item, index) in userCategoriesGetters"
           :key="index"
           :item="item"
-          class="w-[calc(33.3333%-11px)]"
+          class="w-[calc(50%-8px)]"
           :class="selectedIdGetters === item.id ? 'bg-[#6d6c6c]' : 'bg-[#373737]'"
           @click="selectCategory(item.id)"
         />

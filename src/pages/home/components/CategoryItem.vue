@@ -13,7 +13,7 @@ const props = defineProps({
     </div>
     <div class="flex flex-col grow">
       <span class="tag">{{ (props?.item?.value || 0) + '$' }}</span>
-      <n-ellipsis :line-clamp="1">
+      <n-ellipsis style="max-width: 100%; color: #eeeeee;">
         <span class="text-[16px] font-[500] mb-2 text-[#eeeeee]">{{ props?.item?.title || '' }}</span>
       </n-ellipsis>
     </div>
@@ -68,8 +68,8 @@ const props = defineProps({
 .tag {
   padding: 2px 8px;
   border-radius: 8px;
-  background: #344C64;
-  color: #eeeeee;
+  background: #ffb054;
+  color: #202020;
   align-self: baseline;
 }
 </style>
