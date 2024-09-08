@@ -32,7 +32,7 @@ import { BookInformation20Regular } from '@vicons/fluent'
   bottom: 0;
   left: 0;
   background: #080808;
-  padding: 16px;
+  padding: 16px 16px 32px 16px;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 </style>
