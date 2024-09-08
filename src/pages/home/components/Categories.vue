@@ -6,6 +6,7 @@ import { iconsFree } from '@/untils/data'
 import { getImageUrl } from '@/untils/images'
 import CategoryItem from './CategoryItem.vue'
 import CheckIcon from '@/assets/icons/components/CheckIcon.vue'
+import WebApp from '@twa-dev/sdk'
 
 const appStore = useAppStore()
 
@@ -65,7 +66,7 @@ const closeDrawer = () => {
         <span>{{ 'добавить' }}</span>
       </n-button>
     </div>
-    <div class="flex flex-wrap gap-4">
+    <div class="flex flex-col gap-4">
       <div v-if="userCategoriesGetters.length === 0" class="flex flex-col justify-center items-center min-h-[140px] w-full">
         <n-button
           :color="'#cecece'"
@@ -84,15 +85,19 @@ const closeDrawer = () => {
         </n-button>
       </div>
       <template v-else>
-        <CategoryItem
-          ref="categoryItemRef"
-          v-for="(item, index) in userCategoriesGetters"
-          :key="index"
-          :item="item"
-          class="w-[calc(50%-8px)]"
-          :class="selectedIdGetters === item.id ? 'bg-[#6d6c6c]' : 'bg-[#373737]'"
-          @click="selectCategory(item.id)"
-        />
+        <n-scrollbar :style="`max-height: ${WebApp.viewportStableHeight - 400}px`">
+          <div class="flex flex-wrap gap-4">
+            <CategoryItem
+              ref="categoryItemRef"
+              v-for="(item, index) in userCategoriesGetters"
+              :key="index"
+              :item="item"
+              class="w-[calc(50%-8px)]"
+              :class="selectedIdGetters === item.id ? 'bg-[#6d6c6c]' : 'bg-[#373737]'"
+              @click="selectCategory(item.id)"
+            />
+          </div>
+        </n-scrollbar>
       </template>
     </div>
     <n-drawer

@@ -107,6 +107,10 @@ document.addEventListener('touchstart', function(event: any) {
   }
 })
 
+const heightCategoriesBlock = computed(() => {
+  return WebApp.viewportStableHeight
+})
+
 
 onMounted(() => {
   if (window.visualViewport) {
@@ -175,7 +179,9 @@ onMounted(() => {
     >
       <span>{{ 'Выбрать знак' }}</span>
     </n-button> -->
+    
     <Categories />
+    
     <div
       v-if="selectedIdGetters"
       class="flex justify-center absolute bottom-[102px] left-0 w-full animated-btn"
