@@ -13,7 +13,9 @@ const props = defineProps({
     </div>
     <div class="flex flex-col grow">
       <span class="tag">{{ (props?.item?.value || 0) + '$' }}</span>
-      <span class="text-[16px] font-[500] mb-2 text-[#eeeeee]">{{ props?.item?.title || '' }}</span>
+      <n-ellipsis :line-clamp="1">
+        <span class="text-[16px] font-[500] mb-2 text-[#eeeeee]">{{ props?.item?.title || '' }}</span>
+      </n-ellipsis>
     </div>
     <n-popover
       raw
@@ -59,7 +61,7 @@ const props = defineProps({
 <style scoped>
 .item-category {
   position: relative;
-  padding: 8px 16px 8px 8px;
+  padding: 8px;
   border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
