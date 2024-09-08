@@ -112,7 +112,7 @@ onMounted(() => {
       if (windowHeight - viewportHeight <= 0) {
         keyboardHeight.value = 32
       } else {
-        keyboardHeight.value = windowHeight - viewportHeight - 32
+        keyboardHeight.value = windowHeight - viewportHeight - 64
       }
       // keyboardHeight.value = windowHeight - viewportHeight;
 
