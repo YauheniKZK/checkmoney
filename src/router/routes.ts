@@ -20,6 +20,24 @@ export default (): Array<RouteRecordRaw> => {
             requiresAuth: true,
             title: 'Home'
           }
+        },
+        {
+          path: '/charts',
+          name: 'charts',
+          component: () => import('@/pages/charts/Charts.vue'),
+          meta: {
+            requiresAuth: true,
+            title: 'Charts'
+          }
+        },
+        {
+          path: '/settings',
+          name: 'settings',
+          component: () => import('@/pages/settings/Settings.vue'),
+          meta: {
+            requiresAuth: true,
+            title: 'Settings'
+          }
         }
       ]
     }
