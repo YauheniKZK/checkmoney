@@ -184,7 +184,7 @@ onMounted(() => {
     
     <div
       v-if="selectedIdGetters"
-      class="flex justify-center absolute bottom-[102px] left-0 w-full animated-btn"
+      class="flex justify-center absolute bottom-[102px] left-0 w-full animated-btn z-10"
       :style="`
         bottom: ${keyboardHeight}px
       `"

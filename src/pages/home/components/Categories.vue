@@ -46,7 +46,7 @@ const closeDrawer = () => {
 </script>
 
 <template>
-  <div class="flex flex-col w-full py-4">
+  <div class="flex flex-col w-full py-4 grow">
     <div class="flex items-center justify-between border-b-[1px] border-[#ffffff62] pb-2 mb-4">
       <span class="text-[#868686]">{{ 'Ваши категории ' + `(${userCategoriesGetters.length})` }}</span>
       <n-button
@@ -66,7 +66,7 @@ const closeDrawer = () => {
         <span>{{ 'добавить' }}</span>
       </n-button>
     </div>
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 grow">
       <div v-if="userCategoriesGetters.length === 0" class="flex flex-col justify-center items-center min-h-[140px] w-full">
         <n-button
           :color="'#cecece'"
@@ -85,8 +85,8 @@ const closeDrawer = () => {
         </n-button>
       </div>
       <template v-else>
-        <n-scrollbar :style="`max-height: ${WebApp.viewportStableHeight - 350}px`">
-          <div class="flex flex-wrap gap-4 block-categories">
+        <n-scrollbar :style="`max-height: ${WebApp.viewportStableHeight - 350}px`" class="grow block-categories">
+          <div class="flex flex-wrap gap-4 pb-[42px]">
             <CategoryItem
               ref="categoryItemRef"
               v-for="(item, index) in userCategoriesGetters"
@@ -175,18 +175,4 @@ const closeDrawer = () => {
   transition: all 0.2s ease-in-out;
 }
 
-.block-categories {
-  position: relative;
-}
-
-.block-categories::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  z-index: 1;
-  background: linear-gradient(180deg, rgba(36,36,36,0) 0%, rgba(36,36,36,1) 100%);
-}
 </style>
