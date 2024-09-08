@@ -85,8 +85,8 @@ const closeDrawer = () => {
         </n-button>
       </div>
       <template v-else>
-        <n-scrollbar :style="`max-height: ${WebApp.viewportStableHeight - 400}px`">
-          <div class="flex flex-wrap gap-4">
+        <n-scrollbar :style="`max-height: ${WebApp.viewportStableHeight - 350}px`">
+          <div class="flex flex-wrap gap-4 block-categories">
             <CategoryItem
               ref="categoryItemRef"
               v-for="(item, index) in userCategoriesGetters"
@@ -173,5 +173,20 @@ const closeDrawer = () => {
 <style scoped>
 .animated-btn {
   transition: all 0.2s ease-in-out;
+}
+
+.block-categories {
+  position: relative;
+}
+
+.block-categories::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(36,36,36,0) 0%, rgba(36,36,36,1) 100%);
 }
 </style>
