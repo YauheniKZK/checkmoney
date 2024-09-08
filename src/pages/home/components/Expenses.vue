@@ -25,7 +25,7 @@ const categoryItemRefTest = ref<any>(null)
 const hiddennumber = ref()
 const disabledInput = ref(true)
 
-const keyboardHeight = ref(32)
+const keyboardHeight = ref(102)
 
 const optionsSymbols = computed(() => {
   console.log('currencySymbols', currencySymbols)
@@ -115,7 +115,7 @@ onMounted(() => {
       const viewportHeight = window.visualViewport.height;
       const windowHeight = window.innerHeight;
       if (windowHeight - viewportHeight <= 0) {
-        keyboardHeight.value = 32  
+        keyboardHeight.value = 102  
       } else {
         keyboardHeight.value = windowHeight - viewportHeight + 16;  
       }
@@ -178,23 +178,23 @@ onMounted(() => {
     <Categories />
     <div
       v-if="selectedIdGetters"
-      class="flex justify-center absolute bottom-8 left-0 w-full animated-btn"
+      class="flex justify-center absolute bottom-[102px] left-0 w-full animated-btn"
       :style="`
         bottom: ${keyboardHeight}px
       `"
     >
       <n-button
         ref="addPriceBtn"
-        :color="'#0064B0'"
-        :text-color="'#FFFFFF'"
-        class="h-[54px] max-w-[340px] w-full mx-auto"
+        :color="'#cecece'"
+        :text-color="'#1a1a1a'"
+        class="h-[52px] max-w-[340px] w-full mx-auto"
         :disabled="!selectedId"
         :style="`
           opacity: 1 !important;
           border-radius: 16px;
           font-size: 16px;
           font-weight: 500;
-          background: #0064B0 !important;
+          background: #cecece !important;
         `"
         @click="addPrice"
       >
