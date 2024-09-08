@@ -23,7 +23,7 @@ const addPriceBtn = ref()
 
 const categoryItemRefTest = ref<any>(null)
 
-const keyboardHeight = ref(0)
+const keyboardHeight = ref(32)
 
 const optionsSymbols = computed(() => {
   console.log('currencySymbols', currencySymbols)
@@ -110,9 +110,9 @@ onMounted(() => {
       const viewportHeight = window.visualViewport.height;
       const windowHeight = window.innerHeight;
       if (windowHeight - viewportHeight <= 0) {
-        keyboardHeight.value = 0  
+        keyboardHeight.value = 32
       } else {
-        keyboardHeight.value = windowHeight - viewportHeight + 16;  
+        keyboardHeight.value = windowHeight - viewportHeight - 16  
       }
       // keyboardHeight.value = windowHeight - viewportHeight;
 
