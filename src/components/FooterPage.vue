@@ -12,7 +12,7 @@ const navigation = (type: 'charts' | 'home' | 'settings') => {
 </script>
 
 <template>
-  <div class="flex flex-col item-footer gap-2 px-4">
+  <div class="flex flex-col item-footer gap-2 px-6">
     <div class="flex justify-between items-center grow">
       <n-button text @click="navigation('charts')">
         <n-icon :size="24" :color="'#eeeeee'">
