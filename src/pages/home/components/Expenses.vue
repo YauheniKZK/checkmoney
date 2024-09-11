@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { currencySymbols } from '@/untils/data'
+import { currencySymbols, enterBTN } from '@/untils/data'
 import { useAppStore } from '@/stores/app'
 import { storeToRefs } from 'pinia'
 import WebApp from '@twa-dev/sdk'
@@ -14,6 +14,19 @@ const {
   currentEnterExpensesGetters
 } = storeToRefs(appStore)
 const { setCurrentCurrencySymbol, actionValuePriceCategory } = appStore
+
+const setSizeBtn = (type: string) => {
+  if (type !== 'enter' && type !== 'comment') {
+    return 1
+  }
+  if (type === 'enter') {
+    return 2
+  }
+  if (type === 'comment') {
+    return 3
+  }
+  return 1
+}
 
 
 const inputnumber = ref()
@@ -124,16 +137,26 @@ onMounted(() => {
     })
   }
 })
-
 </script>
 
 <template>
   <div class="flex grow flex-col w-full p-4 relative">
-    <div class="flex justify-center">
-      <span class="text-[28px] leading-[58px] flex self-baseline">{{ 'Br' }}</span>
+    <div class="flex justify-center mb-4">
+      <span class="text-[28px] leading-[40px] flex self-baseline">{{ 'Br' }}</span>
       <span class="text-[56px] leading-[50px]">{{ currentEnterExpensesGetters.integer }}</span>
       <span class="text-[24px] leading-[26px] flex self-baseline">{{ currentEnterExpensesGetters.fraction }}</span>
     </div>
+    <n-grid :cols="3" :x-gap="8" :y-gap="8">
+      <n-grid-item
+        v-for="btn in enterBTN"
+        :key="btn.value"
+        :span="setSizeBtn(btn.type)"
+      >
+        <div class="flex justify-center items-center h-[40px] bg-[#ffffff21] text-[#ceeeee] w-full">
+          {{ btn.label }}
+        </div>
+      </n-grid-item>
+    </n-grid>
     <div class="flex items-center">
       <div class="flex text-[32px] text-[#d2d2d2] mr-1">
         <n-ellipsis style="max-width: 100px">
