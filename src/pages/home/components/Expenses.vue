@@ -146,13 +146,13 @@ onMounted(() => {
       <span class="text-[56px] leading-[50px]">{{ currentEnterExpensesGetters.integer }}</span>
       <span class="text-[24px] leading-[26px] flex self-baseline">{{ currentEnterExpensesGetters.fraction }}</span>
     </div>
-    <n-grid :cols="3" :x-gap="8" :y-gap="8">
+    <n-grid :cols="3" :x-gap="4" :y-gap="4">
       <n-grid-item
         v-for="btn in enterBTN"
         :key="btn.value"
         :span="setSizeBtn(btn.type)"
       >
-        <div class="flex justify-center items-center h-[40px] bg-[#ffffff21] text-[#ceeeee] w-full">
+        <div class="flex justify-center items-center h-[50px] bg-[#ffffff21] text-[#ceeeee] w-full rounded-[4px]">
           {{ btn.label }}
         </div>
       </n-grid-item>
