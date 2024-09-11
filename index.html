@@ -1,14 +1,33 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/checkmoney/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue + TS</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Check My Money</title>
     <script type="module" crossorigin src="/checkmoney/assets/index-CFZe-S20.js"></script>
     <link rel="stylesheet" crossorigin href="/checkmoney/assets/index-B8UeYiKX.css">
   </head>
-  <body>
+  <body class="remove-scroll-x">
     <div id="app"></div>
+    <style>
+      .remove-scroll-x{
+          overflow-x: hidden;
+      }
+      html {
+        overflow-y: hidden;
+      }
+      body {
+        -webkit-overflow-scrolling: touch;
+        overflow-y: hidden;
+        -moz-user-select: none;
+             user-select: none;
+        -webkit-user-select: none;
+        width: 100%;
+      }
+    </style>
   </body>
 </html>
