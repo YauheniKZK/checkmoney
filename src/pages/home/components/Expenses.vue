@@ -141,7 +141,7 @@ onMounted(() => {
 
 <template>
   <div class="flex grow flex-col w-full p-4 relative">
-    <div class="flex justify-center mb-4">
+    <div class="flex justify-center mb-4 py-6">
       <span class="text-[28px] leading-[40px] flex self-baseline">{{ 'Br' }}</span>
       <span class="text-[56px] leading-[50px]">{{ currentEnterExpensesGetters.integer }}</span>
       <span class="text-[24px] leading-[26px] flex self-baseline">{{ currentEnterExpensesGetters.fraction }}</span>
@@ -152,8 +152,8 @@ onMounted(() => {
         :key="btn.value"
         :span="setSizeBtn(btn.type)"
       >
-        <div class="flex justify-center items-center h-[50px] bg-[#ffffff21] text-[#ceeeee] w-full rounded-[4px]">
-          {{ btn.label }}
+        <div class="flex justify-center items-center h-[60px] bg-[#ffffff21] w-full rounded-[4px]">
+          <span class="text-[#ceeeee] font-semibold text-[18px]">{{ btn.label }}</span>
         </div>
       </n-grid-item>
     </n-grid>
