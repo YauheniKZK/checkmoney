@@ -8,7 +8,11 @@ import Categories from './Categories.vue'
 
 const appStore = useAppStore()
 
-const { currentCurrencySymbolGetters, selectedIdGetters } = storeToRefs(appStore)
+const {
+  currentCurrencySymbolGetters,
+  selectedIdGetters,
+  currentEnterExpensesGetters
+} = storeToRefs(appStore)
 const { setCurrentCurrencySymbol, actionValuePriceCategory } = appStore
 
 
@@ -125,6 +129,11 @@ onMounted(() => {
 
 <template>
   <div class="flex grow flex-col w-full p-4 relative">
+    <div class="flex justify-center">
+      <span class="text-[28px] leading-[58px] flex self-baseline">{{ 'Br' }}</span>
+      <span class="text-[56px] leading-[50px]">{{ currentEnterExpensesGetters.integer }}</span>
+      <span class="text-[24px] leading-[26px] flex self-baseline">{{ currentEnterExpensesGetters.fraction }}</span>
+    </div>
     <div class="flex items-center">
       <div class="flex text-[32px] text-[#d2d2d2] mr-1">
         <n-ellipsis style="max-width: 100px">
