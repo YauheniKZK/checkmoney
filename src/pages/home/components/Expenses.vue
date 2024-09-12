@@ -5,6 +5,7 @@ import { useAppStore } from '@/stores/app'
 import { storeToRefs } from 'pinia'
 import WebApp from '@twa-dev/sdk'
 import Categories from './Categories.vue'
+import { CommentAdd20Regular, Calculator20Regular, Backspace20Regular } from '@vicons/fluent'
 
 const appStore = useAppStore()
 
@@ -120,6 +121,13 @@ document.addEventListener('touchstart', function(event: any) {
   }
 })
 
+const setHeightBtn = () => {
+  const height = Number(((WebApp.viewportStableHeight - 400) / 4).toFixed(2))
+  console.log('height', Number(((WebApp.viewportStableHeight - 300) / 4).toFixed(2)))
+  console.log('height', height)
+  return height
+}
+
 onMounted(() => {
   if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', () => {
@@ -140,11 +148,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex grow flex-col w-full p-4 relative">
+  <div class="flex grow flex-col justify-end w-full p-4 relative">
     <div class="flex justify-center mb-4 py-6">
-      <span class="text-[28px] leading-[40px] flex self-baseline">{{ 'Br' }}</span>
-      <span class="text-[56px] leading-[50px]">{{ currentEnterExpensesGetters.integer }}</span>
-      <span class="text-[24px] leading-[26px] flex self-baseline">{{ currentEnterExpensesGetters.fraction }}</span>
+      <span class="text-[30px] leading-[30px] flex self-baseline">{{ 'Br' }}</span>
+      <span class="text-[72px] leading-[50px]">{{ currentEnterExpensesGetters.integer }}</span>
+      <span class="text-[24px] leading-[24px] flex self-baseline">{{ currentEnterExpensesGetters.fraction }}</span>
     </div>
     <n-grid :cols="3" :x-gap="4" :y-gap="4">
       <n-grid-item
@@ -152,12 +160,43 @@ onMounted(() => {
         :key="btn.value"
         :span="setSizeBtn(btn.type)"
       >
-        <div class="flex justify-center items-center h-[60px] bg-[#ffffff21] w-full rounded-[4px]">
-          <span class="text-[#ceeeee] font-semibold text-[18px]">{{ btn.label }}</span>
+        <div class="flex justify-center items-center bg-[#ffffff05] w-full rounded-[16px]" :style="`height: ${setHeightBtn()}px`">
+          <n-icon v-if="btn.type === 'remove'" :size="32" :color="'#ceeeee'">
+            <Backspace20Regular />
+          </n-icon>
+          <span v-else class="text-[#ceeeee] font-semibold text-[18px]">{{ btn.label }}</span>
+        </div>
+      </n-grid-item>
+      <n-grid-item :span="3">
+        <div class="flex justify-between items-center pt-4">
+          <div class="flex gap-6">
+            <n-button text>
+              <n-icon :size="28" :color="'#ceeeee'">
+                <CommentAdd20Regular />
+              </n-icon>
+            </n-button>
+            <n-button text>
+              <n-icon :size="28" :color="'#ceeeee'">
+                <Calculator20Regular />
+              </n-icon>
+            </n-button>
+          </div>
+          <n-button
+            :color="'#cbf178'"
+            :text-color="'#282f19'"
+            class="h-[52px] min-w-[40%] max-w-full font-[600]"
+            :style="`
+              border-radius: 32px;
+              font-size: 16px;
+            `"
+            @click="false"
+          >
+            <span>{{ 'Внести' }}</span>
+          </n-button>
         </div>
       </n-grid-item>
     </n-grid>
-    <div class="flex items-center">
+    <!-- <div class="flex items-center">
       <div class="flex text-[32px] text-[#d2d2d2] mr-1">
         <n-ellipsis style="max-width: 100px">
           {{ currentCurrencySymbolGetters?.symbol_native || '' }}
@@ -179,8 +218,8 @@ onMounted(() => {
         @focus="focusNumber"
         @blur="blurNumber"
       />
-    </div>
-    <div class="flex pt-2 max-w-[70%]">
+    </div> -->
+    <!-- <div class="flex pt-2 max-w-[70%]">
       <span v-if="currentCurrencySymbolGetters" class="text-[#d2d2d2]">
         {{ 'Выберете сначало категорию, потом внесите ваши расходы' }}
       </span>
@@ -190,7 +229,7 @@ onMounted(() => {
         </n-button>
         <span class="text-[#d2d2d2]">{{ ' денежный знак' }}</span>
       </div>
-    </div>
+    </div> -->
     <span class="absolute right-4 top-4">{{ WebApp.viewportHeight }}</span>
     <span class="absolute right-4 top-8">{{ WebApp.viewportStableHeight }}</span>
     <span class="absolute right-4 top-16">{{ keyboardHeight }}</span>
@@ -203,9 +242,9 @@ onMounted(() => {
       <span>{{ 'Выбрать знак' }}</span>
     </n-button> -->
     
-    <Categories />
+    <!-- <Categories /> -->
     
-    <div
+    <!-- <div
       v-if="selectedIdGetters"
       class="flex justify-center absolute bottom-[0px] left-0 w-full animated-btn z-10"
       :style="`
@@ -250,7 +289,7 @@ onMounted(() => {
           />
         </div>
       </n-drawer-content>
-    </n-drawer>
+    </n-drawer> -->
   </div>
 </template>
 

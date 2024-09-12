@@ -1202,23 +1202,8 @@ export const enterBTN = [
 		type: 'number'
 	},
 	{
-		label: 'Calc',
-		value: 'calc',
-		type: 'calc'
-	},
-	{
-		label: 'Внести',
-		value: 'enter',
-		type: 'enter'
-	},
-	{
 		label: 'Remove',
 		value: 'remove',
 		type: 'remove'
-	},
-	{
-		label: 'Comment',
-		value: 'comment',
-		type: 'comment'
 	}
 ]
