@@ -36,12 +36,13 @@ const navigation = (type: 'charts' | 'home' | 'settings') => {
 <style scoped>
 .item-footer {
   position: fixed;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  background: #080808;
-  padding: 16px 16px 38px 16px;
+  width: calc(100% - 32px);
+  bottom: 8px;
+  left: 16px;
+  background: #123539;
+  padding: 16px 16px 16px 16px;
   z-index: 2;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  border-radius: 50px;
 }
 </style>
