@@ -29,7 +29,7 @@ const setSizeBtn = (type: string) => {
   return 1
 }
 
-
+const classPushBtn = ref('')
 const inputnumber = ref()
 const valueInput = ref(null)
 const showSelectSymbol = ref(false)
@@ -42,6 +42,18 @@ const addPriceBtn = ref()
 const categoryItemRefTest = ref<any>(null)
 
 const keyboardHeight = ref(32)
+
+const pushedBtnValue = ref<string | null>(null)
+
+const pushBtn = (value: string) => {
+  pushedBtnValue.value = value
+  classPushBtn.value = 'enlarged'
+  WebApp.HapticFeedback.impactOccurred('medium')
+  setTimeout(() => {
+    classPushBtn.value = ''
+    pushedBtnValue.value = null
+  }, 100)
+}
 
 const optionsSymbols = computed(() => {
   console.log('currencySymbols', currencySymbols)
@@ -160,11 +172,11 @@ onMounted(() => {
         :key="btn.value"
         :span="setSizeBtn(btn.type)"
       >
-        <div class="flex justify-center items-center bg-[#ffffff05] w-full rounded-[16px]" :style="`height: ${setHeightBtn()}px`">
+        <div class="flex justify-center items-center bg-[#ffffff05] w-full rounded-[16px]" :style="`height: ${setHeightBtn()}px`" @click="pushBtn(btn.value)">
           <n-icon v-if="btn.type === 'remove'" :size="32" :color="'#ceeeee'">
             <Backspace20Regular />
           </n-icon>
-          <span v-else class="text-[#ceeeee] font-semibold text-[18px]">{{ btn.label }}</span>
+          <span v-else class="text-[#ceeeee] font-semibold text-[18px] unenlarged" :class="pushedBtnValue === btn.value ? classPushBtn: ''">{{ btn.label }}</span>
         </div>
       </n-grid-item>
       <n-grid-item :span="3">
@@ -296,5 +308,12 @@ onMounted(() => {
 <style scoped>
 .animated-btn {
   transition: all 0.2s ease-in-out;
+}
+.unenlarged:not(.enlarged) {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1);
+}
+.enlarged {
+  transform: scale(1.5);
 }
 </style>
