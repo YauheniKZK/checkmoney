@@ -47,8 +47,8 @@ const pushedBtnValue = ref<string | null>(null)
 
 const pushBtn = (value: string) => {
   pushedBtnValue.value = value
-  classPushBtn.value = 'enlarged'
   WebApp.HapticFeedback.impactOccurred('medium')
+  classPushBtn.value = 'enlarged'
   setTimeout(() => {
     classPushBtn.value = ''
     pushedBtnValue.value = null
@@ -310,10 +310,11 @@ onMounted(() => {
   transition: all 0.2s ease-in-out;
 }
 .unenlarged:not(.enlarged) {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
   transform: scale(1);
 }
 .enlarged {
+  transition: all 0.1s ease-in-out;
   transform: scale(1.5);
 }
 </style>
