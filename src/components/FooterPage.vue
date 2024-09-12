@@ -36,9 +36,9 @@ const navigation = (type: 'charts' | 'home' | 'settings') => {
 <style scoped>
 .item-footer {
   position: fixed;
-  width: calc(100% - 32px);
-  bottom: 8px;
-  left: 16px;
+  width: calc(100% - 16px);
+  bottom: 16px;
+  left: 8px;
   background: #123539;
   padding: 16px 16px 16px 16px;
   z-index: 2;
